@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>IG Project</title>
+		
+		<link rel="icon" href="./favicon.ico" type="image/x-icon">
+		
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body id="body_bg">
+        <div id="settings">
+			<h1 style="font-size: 50px">Game Over</h1>
+            <span id="end_score_txt"></span>
+            <a class="link_back" href="game.html" style="color: #6495ed;">Play again</a>
+            <a class="link_back" href="index.html">Back to the menu</a>
+        </div>
+
+        <audio id="audio_end" src="end.mp3" loop="true" autoplay="true"></audio>
+
+        <script type="module">
+            import {GameSetting} from './js/GameSetting.js'
+            
+            const end_score_txt = document.getElementById("end_score_txt");
+
+            var score = sessionStorage.getItem("score");
+            if (score == null){
+                end_score_txt.innerHTML = "Errore";
+                throw ReferenceError("Game score not set correctly")
+            }
+            
+            end_score_txt.innerHTML = "Score: " + score;
+
+            var gameSetting = new GameSetting();
+			var JSONstring = JSON.parse(sessionStorage.getItem("gameSetting"));
+			if (JSONstring != null){
+				gameSetting.setValuesFromJSON(JSONstring);
+			}
+
+            var audio_end = document.getElementById("audio_end");
+            audio_end.volume = gameSetting.getVolume()/10.0;
+        </script>
+    </body>
+</html>

@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>IG Project</title>
+		
+		<link rel="icon" href="./favicon.ico" type="image/x-icon">
+		
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body id="body_bg">
+		<div id="settings">
+			<h1 style="font-size: 50px">Leonard Adventures</h1>
+			<div class="line-setting">
+				<span id="" class="grup-buttons-title">Difficulty</span>
+				<div class="grup-buttons">
+					<input id="button-difficulty-Easy" class="button-difficulty" type="button" value="Easy" />
+					<input id="button-difficulty-Medium" class="button-difficulty" type="button" value="Medium" />
+					<input id="button-difficulty-Hard" class="button-difficulty" type="button" value="Hard" />
+				</div>
+				<span id="text-difficulty" class="text-input">Easy</span>
+			</div>
+
+			<div class="line-setting">
+				<span id="" class="grup-buttons-title">Map</span>
+				<div class="grup-buttons">
+					<input id="button-map-Plain" class="button-map" type="button" value="Plain" />
+					<!--
+						<input id="button-map-Lake" class="button-map" type="button" value="Lake" disabled/>
+						<input id="button-map-Mountain" class="button-map" type="button" value="Mountain" disabled/>
+					-->
+				</div>
+				<span id="text-map" class="text-input">Plain</span>
+			</div>
+
+			<div class="line-setting">
+				<span class="grup-range-title">Day Time</span>
+				<div class="grup-range">
+					<span class="span-range">6</span>
+					<input id="range-time" type="range" min="6" max="20" step="1" value="12" />
+					<span class="span-range">20</span>
+				</div>
+				<span id="text-time" class="text-input">12</span>
+			</div>
+
+			<div class="line-setting">
+				<span class="grup-range-title">Volume</span>
+				<div class="grup-range">
+					<span class="span-range">0</span>
+					<input id="range-volume" type="range" min="0" max="10" step="1" value="10" />
+					<span class="span-range">10</span>
+				</div>
+				<span id="text-volume" class="text-input">10</span>
+			</div>
+
+			<div class="line-setting">
+				<span id="" class="grup-buttons-title">Point of View</span>
+				<div class="grup-buttons">
+					<input id="button-first-person" class="button-pov" type="button" value="First Person" />
+					<input id="button-third-person" class="button-pov" type="button" value="Third Person" />
+				</div>
+				<span id="text-pov" class="text-input">Third Person</span>
+			</div>
+
+			<br>
+
+			<input id="button-play" class="button-play" type="button" value="Play" />
+
+		</div>
+
+		<audio id="audio_index" src="index.mp3" loop="true" autoplay="true"></audio>
+
+		<script type="module">
+			import {GameSetting} from './js/GameSetting.js'
+
+			var gameSetting = new GameSetting();
+			var JSONstring = JSON.parse(sessionStorage.getItem("gameSetting"));
+			if (JSONstring != null){
+				gameSetting.setValuesFromJSON(JSONstring);
+			}
+
+			var difficultyEnum = gameSetting.getDifficulyEnumerator();
+			var mapEnum = gameSetting.getMapEnumerator();
+
+			var bde = document.getElementById("button-difficulty-Easy");
+			var bdm = document.getElementById("button-difficulty-Medium");
+			var bdh = document.getElementById("button-difficulty-Hard");
+			var td = document.getElementById("text-difficulty");
+
+			var bmp = document.getElementById("button-map-Plain");
+			var bml = document.getElementById("button-map-Lake");
+			var bmm = document.getElementById("button-map-Mountain");
+			var tm = document.getElementById("text-map");
+
+			var rt = document.getElementById("range-time");
+			var tt = document.getElementById("text-time");
+
+			var rv = document.getElementById("range-volume");
+			var tv = document.getElementById("text-volume");
+
+			var bfp = document.getElementById("button-first-person");
+			var btp = document.getElementById("button-third-person");
+			var tp = document.getElementById("text-pov");
+
+			var bp = document.getElementById("button-play");
+
+			var ai = document.getElementById("audio_index");
+
+			bde.onclick = function() {setDifficulty(difficultyEnum.Easy)};
+			bdm.onclick = function() {setDifficulty(difficultyEnum.Medium)};
+			bdh.onclick = function() {setDifficulty(difficultyEnum.Hard)};
+
+			/*
+			bmp.onclick = function() {setMap(mapEnum.Plain)};
+			bml.onclick = function() {setMap(mapEnum.Lake)};
+			bmm.onclick = function() {setMap(mapEnum.Mountain)};
+			*/
+
+			bfp.onclick = function() {setFirstPerson(true)};
+			btp.onclick = function() {setFirstPerson(false)};
+
+			function setDifficulty(difficulty) {
+				gameSetting.setDifficulty(difficulty)
+				td.innerHTML = difficulty;
+			}
+
+			function setMap(map) {
+				gameSetting.setMap(map)
+				tm.innerHTML = map;
+			}
+
+			rt.onchange = function (event) {
+				updateTime(event.target.value);
+			};
+			function updateTime(value){
+				var dayTime = parseInt(value);
+				gameSetting.setDayTime(dayTime);
+				tt.innerHTML = dayTime;
+			}
+
+			rv.onchange = function (event) {
+				updateVolume(event.target.value);
+			};
+			function updateVolume(value){
+				var volume = parseInt(value);
+				gameSetting.setVolume(volume);
+				tv.innerHTML = volume;
+				ai.volume = volume/10.0;
+			}
+
+			function setFirstPerson(value){
+				var firstPerson = value
+				gameSetting.setFirstPerson(firstPerson);
+				if(firstPerson) tp.innerHTML = "First Person";
+				else  tp.innerHTML = "Third Person";
+			}
+
+			setDifficulty(gameSetting.getDifficulty())
+			setMap(gameSetting.getMap())
+			updateTime(gameSetting.getDayTime())
+			rt.value = gameSetting.getDayTime()
+			updateVolume(gameSetting.getVolume())
+			rv.value = gameSetting.getVolume()
+			setFirstPerson(gameSetting.isFirstPerson())
+		
+			bp.onclick = function (){
+				sessionStorage.setItem('gameSetting', JSON.stringify(gameSetting));
+
+				window.location.href = "./game.html";
+			}
+		</script>
+	</body>
+</html>
