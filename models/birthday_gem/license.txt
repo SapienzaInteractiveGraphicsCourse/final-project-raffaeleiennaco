@@ -1,0 +1,11 @@
+Model Information:
+* title:	Birthday Gem
+* source:	https://sketchfab.com/3d-models/birthday-gem-e7dfa42f2c804812832e9028ea927dcf
+* author:	KipperTD (https://sketchfab.com/KipperTD)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Birthday Gem" (https://sketchfab.com/3d-models/birthday-gem-e7dfa42f2c804812832e9028ea927dcf) by KipperTD (https://sketchfab.com/KipperTD) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
