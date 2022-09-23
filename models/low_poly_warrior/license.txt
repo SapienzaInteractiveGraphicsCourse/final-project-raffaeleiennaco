@@ -1,0 +1,11 @@
+Model Information:
+* title:	Low Poly Warrior
+* source:	https://sketchfab.com/3d-models/low-poly-warrior-23954b0a176a497788dcd3a29204382f
+* author:	Gui Santos (https://sketchfab.com/gsantos)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Low Poly Warrior" (https://sketchfab.com/3d-models/low-poly-warrior-23954b0a176a497788dcd3a29204382f) by Gui Santos (https://sketchfab.com/gsantos) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
