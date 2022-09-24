@@ -14,4 +14,4 @@ I tested the project on Chrome and Edge, it works on both but it's better on Edg
 
 # Link To Play The Game
 
-[Click here to play the game.](https://sapienzainteractivegraphicscourse.github.io/final-project-raffaeleiennaco/index.html)
+[Click here to play the game](https://sapienzainteractivegraphicscourse.github.io/final-project-raffaeleiennaco/index.html)
