@@ -1,7 +1,7 @@
 # Final Progect IG Course
 
 <p><b> Leonard Adventure </b></p>
-<p> Made By: Raffaele Iennaco Mat: 1898700 </p>
+<p> Made By: Raffaele Iennaco - Mat: 1898700 </p>
 
 # Commands
 
